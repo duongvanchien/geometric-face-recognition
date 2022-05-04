@@ -10,7 +10,7 @@ def load_images_from_folder(folder):
             images.append(img)
     return images
 
-imgs = load_images_from_folder("./face_age/037")
+imgs = load_images_from_folder("./face_age/001")
 
 # convert image from RGB -> GRAY 
 # img = cv2.imread("face_age/095/6403.png")

@@ -35,7 +35,7 @@ face_features = predictor(image=convert_img, box=faces[0])
 
 
 
-img = cv2.Canny(convert_img, 60, 60)
+img = cv2.Canny(img, 100, 100)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]

@@ -6,7 +6,7 @@ import dlib
 # read the image
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
-img = cv2.imread("./test/01267.png")
+img = cv2.imread("./test/01217.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
@@ -35,7 +35,7 @@ face_features = predictor(image=convert_img, box=faces[0])
 
 
 
-img = cv2.Canny(convert_img, 60, 60)
+img = cv2.Canny(img, 100, 150)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]

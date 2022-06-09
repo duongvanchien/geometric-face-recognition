@@ -6,13 +6,13 @@ import dlib
 # read the image
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
-img = cv2.imread("./test/01267.png")
+img = cv2.imread("./test/01217.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
 convert_img = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
 
-
+img0 = cv2.GaussianBlur(convert_img,(3,3),0)
 # load face detector
 face_detector = dlib.get_frontal_face_detector()
 
@@ -35,11 +35,11 @@ face_features = predictor(image=convert_img, box=faces[0])
 
 
 
-img = cv2.Canny(convert_img, 60, 60)
+img = cv2.Canny(img, 100, 100)
 
 
-under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
-under_right_eye = img[(face_features.part(47).y):face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
+under_left_eye = img0[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
+under_right_eye = img0[(face_features.part(47).y):face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
 
 #under eye
 cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
@@ -60,7 +60,7 @@ cv2.rectangle(img, (face_features.part(45).x, face_features.part(26).y), (face_f
 
 
 
-cv2.imshow('img', img)
+cv2.imshow('img', edge_img)
 
 # plt.subplot(1,5,1),plt.imshow(img0,cmap = 'gray')
 # plt.title('Original'), plt.xticks([]), plt.yticks([])

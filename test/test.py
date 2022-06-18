@@ -6,7 +6,8 @@ import dlib
 # read the image
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
-img = cv2.imread("./test/under-20/08179.png")
+# img = cv2.imread("./under-20/08179.png")
+img = cv2.imread("../img/under-20/08179.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
@@ -20,7 +21,7 @@ face_detector = dlib.get_frontal_face_detector()
 faces = face_detector(convert_img)
 
 # load the predictor:
-predictor = dlib.shape_predictor("shape_predictor_81_face_landmarks.dat")
+predictor = dlib.shape_predictor("../shape_predictor_81_face_landmarks.dat")
 
 face_features = predictor(image=convert_img, box=faces[0])
 
@@ -46,8 +47,8 @@ cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y), (face_f
 cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
 
 #cheek
-cv2.rectangle(img, (face_features.part(4).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(4).y), (255,0,0), 2)
-cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(12).x, face_features.part(12).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(13).x, face_features.part(13).y), (255,0,0), 2)
 
 #forehead
 cv2.rectangle(img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y), (255,0,0), 2)

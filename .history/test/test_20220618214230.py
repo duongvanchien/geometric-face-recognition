@@ -35,19 +35,19 @@ for n in range(0, 81):
 
 
 
-img = cv2.Canny(convert_img, 60, 60)
+img = cv2.Canny(convert_img, 50, 60)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
 under_right_eye = img[(face_features.part(47).y):face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
 
 #under eye
-cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y+10), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
-cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y+10), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
 
 #cheek
-cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)
-cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(13).x, face_features.part(13).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(4).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(4).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(12).x, face_features.part(12).y), (255,0,0), 2)
 
 #forehead
 cv2.rectangle(img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y), (255,0,0), 2)

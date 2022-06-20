@@ -6,7 +6,7 @@ import dlib
 # read the image
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
-img = cv2.imread("./test/under-20/08050.png")
+img = cv2.imread("./test/under-20/08682.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
@@ -42,8 +42,8 @@ under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_f
 under_right_eye = img[(face_features.part(47).y):face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
 
 #under eye
-cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y+10), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
-cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y+10), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
 
 #cheek
 cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)

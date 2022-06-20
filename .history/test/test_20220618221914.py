@@ -35,7 +35,7 @@ for n in range(0, 81):
 
 
 
-img = cv2.Canny(convert_img, 60, 60)
+# img = cv2.Canny(convert_img, 60, 60)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]

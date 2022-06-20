@@ -45,15 +45,15 @@ def feature_extraction(file):
     geomatric = d_en/d_nm
 
     #forehead feature
-    forehead = edge_img[face_features.part(71).y:face_features.part(19).y-10, face_features.part(19).x:face_features.part(24).x]
+    forehead = edge_img[face_features.part(71).y:face_features.part(19).y, face_features.part(19).x:face_features.part(24).x]
     forehead_wrinkle_percentage = np.sum(forehead>0)*100/(forehead.shape[0]*forehead.shape[1])
 
     #left under eye feature
-    left_under_eye = edge_img[face_features.part(40).y+5:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
+    left_under_eye = edge_img[face_features.part(40).y:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
     left_under_eye_wrinkle_percentage = np.sum(left_under_eye>0)*100/(left_under_eye.shape[0]*left_under_eye.shape[1])
 
     #right under eye feature
-    right_under_eye = edge_img[face_features.part(47).y+5:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
+    right_under_eye = edge_img[face_features.part(47).y:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
     right_under_eye_wrinkle_percentage = np.sum(right_under_eye>0)*100/(right_under_eye.shape[0]*right_under_eye.shape[1])
 
     #left cheek 
@@ -99,46 +99,46 @@ def feature_extraction(file):
 
 model = initModel()
 
-result=feature_extraction('test\\under-20\\08342.png')
-cv2.imshow('img', result["edge_img"])
-cv2.waitKey(delay=0)
+# result=feature_extraction('test\\under-20\\08342.png')
+# cv2.imshow('img', result["edge_img"])
+# cv2.waitKey(delay=0)
 
-print(model.predict([result["features"]]))
+# print(model.predict([result["features"]]))
 
 
-# final=0
-# allItem=0
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\over-45'):
-#     rs= feature_extraction(os.path.join('test\\over-45',filename))
-#     print(os.path.join('test\\over-45',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='over-45':
-#         final+=1
+for filename in os.listdir('test\\over-45'):
+    rs= feature_extraction(os.path.join('test\\over-45',filename))
+    print(os.path.join('test\\over-45',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='over-45':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
-# final=0
-# allItem=0
+print(str(final) + " " + str(allItem))
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\under-20'):
-#     rs= feature_extraction(os.path.join('test\\under-20',filename))
-#     print(os.path.join('test\\under-20',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='under-20':
-#         final+=1
+for filename in os.listdir('test\\under-20'):
+    rs= feature_extraction(os.path.join('test\\under-20',filename))
+    print(os.path.join('test\\under-20',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='under-20':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
-# final=0
-# allItem=0
+print(str(final) + " " + str(allItem))
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\20-45'):
-#     rs= feature_extraction(os.path.join('test\\20-45',filename))
-#     print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='20-45':
-#         final+=1
+for filename in os.listdir('test\\20-45'):
+    rs= feature_extraction(os.path.join('test\\20-45',filename))
+    print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='20-45':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
+print(str(final) + " " + str(allItem))
 
 
 

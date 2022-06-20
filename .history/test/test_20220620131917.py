@@ -7,7 +7,7 @@ import dlib
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("./under-20/08179.png")
-img = cv2.imread("./test/over-45/05031.png")
+img = cv2.imread("./test/20-45/05181.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
@@ -37,7 +37,7 @@ for n in range(0, 81):
 
 convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
 
-img = cv2.Canny(convert_img, 45, 50)
+img = cv2.Canny(convert_img, 45, 60)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]

@@ -32,6 +32,7 @@ def feature_extraction(folder, label):
         #get face landmarks
         face_features = predictor(image=convert_img, box=faces[0])
 
+        convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
 
         edge_img = cv2.Canny(convert_img, 45, 60)
 

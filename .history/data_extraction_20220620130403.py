@@ -32,8 +32,7 @@ def feature_extraction(folder, label):
         #get face landmarks
         face_features = predictor(image=convert_img, box=faces[0])
 
-
-        edge_img = cv2.Canny(convert_img, 45, 60)
+        edge_img = cv2.Canny(convert_img, 50, 50)
 
         #geomatric feature
         d_en = face_features.part(30).y - face_features.part(27).y

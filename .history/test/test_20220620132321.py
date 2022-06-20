@@ -7,7 +7,7 @@ import dlib
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("./under-20/08179.png")
-img = cv2.imread("./test/over-45/05031.png")
+img = cv2.imread("./test/20-45/06978.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 

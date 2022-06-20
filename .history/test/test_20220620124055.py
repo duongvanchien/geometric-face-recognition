@@ -7,12 +7,11 @@ import dlib
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("./under-20/08179.png")
-img = cv2.imread("./test/over-45/05031.png")
+img = cv2.imread("./img/under-20/00054.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
 convert_img = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
-
 
 
 # load face detector
@@ -28,16 +27,16 @@ face_features = predictor(image=convert_img, box=faces[0])
 
 for n in range(0, 81):
     
-    x = face_features.part(n).x
-    y = face_features.part(n).y
+            x = face_features.part(n).x
+            y = face_features.part(n).y
 
-#     # Draw a circle
-    cv2.circle(img=img, center=(x, y), radius=2, color=(0,255,0), thickness=1)
-    cv2.putText(img, str(n), (x,y+10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+        #     # Draw a circle
+            cv2.circle(img=img, center=(x, y), radius=2, color=(0,255,0), thickness=1)
+            cv2.putText(img, str(n), (x,y+10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
 
-convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
 
-img = cv2.Canny(convert_img, 45, 50)
+
+img = cv2.Canny(convert_img, 50, 60)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
@@ -52,7 +51,7 @@ cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_fe
 cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(13).x, face_features.part(13).y), (255,0,0), 2)
 
 #forehead
-cv2.rectangle(img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y-10), (255,0,0), 2)
+cv2.rectangle(img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y), (255,0,0), 2)
 
 #left-eye-edge
 cv2.rectangle(img, (face_features.part(75).x, face_features.part(17).y), (face_features.part(18).x, face_features.part(29).y), (255,0,0), 2)

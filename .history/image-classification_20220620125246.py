@@ -19,7 +19,7 @@ def initModel():
     ds = pd.read_csv(data_path,usecols = ["geomatric", "forehead", "left-under-eye", "right-under-eye", "left-cheek", "right-cheek", "left-eye-edge", "right-eye-edge", "class"])
     X = ds.iloc[:,:8]
     y = ds.iloc[:,-1]
-    knnmodel=KNeighborsClassifier(n_neighbors=10)
+    knnmodel=KNeighborsClassifier(n_neighbors=20)
     knnmodel.fit(X.values,y)
     return knnmodel
 
@@ -34,7 +34,6 @@ def feature_extraction(file):
     
     #get face landmarks
     face_features = predictor(image=convert_img, box=faces[0])
-
 
     #canny edge detection
     edge_img = cv2.Canny(convert_img, 45, 60)

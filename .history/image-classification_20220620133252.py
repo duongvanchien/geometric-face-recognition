@@ -99,46 +99,46 @@ def feature_extraction(file):
 
 model = initModel()
 
-result=feature_extraction('test\\under-20\\08342.png')
-cv2.imshow('img', result["edge_img"])
-cv2.waitKey(delay=0)
+# result=feature_extraction('test\\under-20\\08342.png')
+# cv2.imshow('img', result["edge_img"])
+# cv2.waitKey(delay=0)
 
-print(model.predict([result["features"]]))
+# print(model.predict([result["features"]]))
 
 
-# final=0
-# allItem=0
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\over-45'):
-#     rs= feature_extraction(os.path.join('test\\over-45',filename))
-#     print(os.path.join('test\\over-45',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='over-45':
-#         final+=1
+for filename in os.listdir('test\\over-45'):
+    rs= feature_extraction(os.path.join('test\\over-45',filename))
+    print(os.path.join('test\\over-45',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='over-45':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
-# final=0
-# allItem=0
+print(str(final) + " " + str(allItem))
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\under-20'):
-#     rs= feature_extraction(os.path.join('test\\under-20',filename))
-#     print(os.path.join('test\\under-20',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='under-20':
-#         final+=1
+for filename in os.listdir('test\\under-20'):
+    rs= feature_extraction(os.path.join('test\\under-20',filename))
+    print(os.path.join('test\\under-20',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='under-20':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
-# final=0
-# allItem=0
+print(str(final) + " " + str(allItem))
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\20-45'):
-#     rs= feature_extraction(os.path.join('test\\20-45',filename))
-#     print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='20-45':
-#         final+=1
+for filename in os.listdir('test\\20-45'):
+    rs= feature_extraction(os.path.join('test\\20-45',filename))
+    print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='20-45':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
+print(str(final) + " " + str(allItem))
 
 
 

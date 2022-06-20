@@ -19,7 +19,7 @@ def initModel():
     ds = pd.read_csv(data_path,usecols = ["geomatric", "forehead", "left-under-eye", "right-under-eye", "left-cheek", "right-cheek", "left-eye-edge", "right-eye-edge", "class"])
     X = ds.iloc[:,:8]
     y = ds.iloc[:,-1]
-    knnmodel=KNeighborsClassifier(n_neighbors=10)
+    knnmodel=KNeighborsClassifier(n_neighbors=20)
     knnmodel.fit(X.values,y)
     return knnmodel
 
@@ -34,7 +34,6 @@ def feature_extraction(file):
     
     #get face landmarks
     face_features = predictor(image=convert_img, box=faces[0])
-
 
     #canny edge detection
     edge_img = cv2.Canny(convert_img, 45, 60)
@@ -74,21 +73,21 @@ def feature_extraction(file):
 
     #draw feature zones
     #under eye
-    cv2.rectangle(edge_img, (face_features.part(18).x, face_features.part(40).y+5), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
-    cv2.rectangle(edge_img, (face_features.part(22).x, face_features.part(47).y+5), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y+5), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y+5), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
 
     #cheek
-    cv2.rectangle(edge_img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)
-    cv2.rectangle(edge_img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(13).x, face_features.part(13).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(54).x, face_features.part(29).y), (face_features.part(13).x, face_features.part(13).y), (255,0,0), 2)
 
     #forehead
-    cv2.rectangle(edge_img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y-10), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(19).x, face_features.part(71).y), (face_features.part(24).x, face_features.part(19).y-10), (255,0,0), 2)
 
     #left-eye-edge
-    cv2.rectangle(edge_img, (face_features.part(75).x, face_features.part(17).y), (face_features.part(18).x, face_features.part(29).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(75).x, face_features.part(17).y), (face_features.part(18).x, face_features.part(29).y), (255,0,0), 2)
 
     #right-eye-edge
-    cv2.rectangle(edge_img, (face_features.part(25).x, face_features.part(26).y), (face_features.part(74).x, face_features.part(29).y), (255,0,0), 2)
+    cv2.rectangle(img, (face_features.part(25).x, face_features.part(26).y), (face_features.part(74).x, face_features.part(29).y), (255,0,0), 2)
     
     
     return {

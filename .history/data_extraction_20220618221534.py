@@ -49,15 +49,15 @@ def feature_extraction(folder, label):
         forehead_wrinkle_percentage = np.sum(forehead>0)*100/(forehead.shape[0]*forehead.shape[1])
 
         #left under eye feature
-        left_under_eye = edge_img[face_features.part(40).y+5:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
+        left_under_eye = edge_img[face_features.part(40).y:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
         left_under_eye_wrinkle_percentage = np.sum(left_under_eye>0)*100/(left_under_eye.shape[0]*left_under_eye.shape[1])
 
         #right under eye feature
-        right_under_eye = edge_img[face_features.part(47).y+5:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
+        right_under_eye = edge_img[face_features.part(47).y:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
         right_under_eye_wrinkle_percentage = np.sum(right_under_eye>0)*100/(right_under_eye.shape[0]*right_under_eye.shape[1])
 
         #left cheek 
-        left_cheek = edge_img[face_features.part(29).y:face_features.part(3).y, face_features.part(3).x:face_features.part(48).x]
+        left_cheek = edge_img[face_features.part(29).y:face_features.part(4).y, face_features.part(4).x:face_features.part(48).x]
         left_cheek_wrinkle_percentage = np.sum(left_cheek>0)*100/(left_cheek.shape[0]*left_cheek.shape[1])
 
         #right cheek
@@ -98,7 +98,7 @@ def write_file():
             row["r_under_eye"],row["l_cheek"],row["r_cheek"],row["l_eye_edge"],row["r_eye_edge"],row["class"]])     \
 
 
-feature_extraction("./img/under-20","under-20")
-feature_extraction("./img/20-45","20-45")
-feature_extraction("./img/over-45","over-45")
+feature_extraction("img\\under-20","under-20")
+feature_extraction("img\\20-45","20-45")
+feature_extraction("img\\over-45","over-45")
 write_file()

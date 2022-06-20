@@ -60,7 +60,7 @@ def feature_extraction(file):
     left_cheek_wrinkle_percentage = np.sum(left_cheek>0)*100/(left_cheek.shape[0]*left_cheek.shape[1])
 
     #right cheek
-    right_cheek = edge_img[face_features.part(29).y:face_features.part(12).y, face_features.part(54).x:face_features.part(12).x]
+    right_cheek = edge_img[face_features.part(29).y:face_features.part(13).y, face_features.part(54).x:face_features.part(13).x]
     right_cheek_wrinkle_percentage = np.sum(right_cheek>0)*100/(right_cheek.shape[0]*right_cheek.shape[1])
 
     #left-eye-edge
@@ -93,7 +93,9 @@ def feature_extraction(file):
 
 model = initModel()
 
-result=feature_extraction('test\\under-20\\00908.png')
+result=feature_extraction('test\\under-20\\08050.png')
+cv2.imshow('img', result["original_img"])
+cv2.waitKey(delay=0)
 cv2.imshow('img', result["edge_img"])
 cv2.waitKey(delay=0)
 

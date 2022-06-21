@@ -36,6 +36,7 @@ def feature_extraction(file):
     #get face landmarks
     face_features = predictor(image=convert_img, box=faces[0])
 
+
     #canny edge detection
     edge_img = cv2.Canny(convert_img, 45, 60)
 

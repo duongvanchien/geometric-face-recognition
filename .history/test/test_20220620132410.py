@@ -6,16 +6,8 @@ import dlib
 # read the image
 # img = cv2.imread("images/<20/3.jpg")
 # img = cv2.imread("images/<20/3.jpg")
-<<<<<<< HEAD
 # img = cv2.imread("./under-20/08179.png")
-<<<<<<< HEAD
-img = cv2.imread("../img/under-20/08179.png")
-=======
-img = cv2.imread("./test/under-20/08050.png")
->>>>>>> 4f9506b2a65c15645ef2ce3cd977978f340b089e
-=======
-img = cv2.imread("./test/over-45/05031.png")
->>>>>>> fe1ad92320ebef46170f6defb8405f796a95c2e7
+img = cv2.imread("./test/20-45/06978.png")
 # img = cv2.imread("images/test2.webp")
 
 # convert image from RGB -> GRAY 
@@ -43,27 +35,17 @@ for n in range(0, 81):
     cv2.circle(img=img, center=(x, y), radius=2, color=(0,255,0), thickness=1)
     cv2.putText(img, str(n), (x,y+10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
 
-convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
+# convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
 
-<<<<<<< HEAD
-
-img = cv2.Canny(convert_img, 60, 60)
-=======
-img = cv2.Canny(convert_img, 45, 50)
->>>>>>> fe1ad92320ebef46170f6defb8405f796a95c2e7
+img = cv2.Canny(convert_img, 40, 50)
 
 
 under_left_eye = img[(face_features.part(40).y):face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
 under_right_eye = img[(face_features.part(47).y):face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
 
 #under eye
-<<<<<<< HEAD
-cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y+10), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
-cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y+10), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
-=======
 cv2.rectangle(img, (face_features.part(18).x, face_features.part(40).y+5), (face_features.part(21).x, face_features.part(29).y), (255,0,0), 2)
 cv2.rectangle(img, (face_features.part(22).x, face_features.part(47).y+5), (face_features.part(25).x, face_features.part(29).y), (255,0,0), 2)
->>>>>>> fe1ad92320ebef46170f6defb8405f796a95c2e7
 
 #cheek
 cv2.rectangle(img, (face_features.part(3).x, face_features.part(29).y), (face_features.part(48).x, face_features.part(3).y), (255,0,0), 2)

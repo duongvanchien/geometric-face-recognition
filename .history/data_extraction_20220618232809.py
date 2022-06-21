@@ -32,7 +32,6 @@ def feature_extraction(folder, label):
         #get face landmarks
         face_features = predictor(image=convert_img, box=faces[0])
 
-
         edge_img = cv2.Canny(convert_img, 45, 60)
 
         #geomatric feature
@@ -40,16 +39,21 @@ def feature_extraction(folder, label):
         d_nm = face_features.part(62).y - face_features.part(30).y
         geomatric = d_en/d_nm
 
+        #geomatric feature
+        d_en = face_features.part(30).y - face_features.part(27).y
+        d_nm = face_features.part(62).y - face_features.part(30).y
+        geomatric = d_en/d_nm
+
         #forehead feature
-        forehead = edge_img[face_features.part(71).y:face_features.part(19).y-10, face_features.part(19).x:face_features.part(24).x]
+        forehead = edge_img[face_features.part(71).y:face_features.part(19).y, face_features.part(19).x:face_features.part(24).x]
         forehead_wrinkle_percentage = np.sum(forehead>0)*100/(forehead.shape[0]*forehead.shape[1])
 
         #left under eye feature
-        left_under_eye = edge_img[face_features.part(40).y+5:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
+        left_under_eye = edge_img[face_features.part(40).y:face_features.part(29).y, face_features.part(18).x:face_features.part(21).x]
         left_under_eye_wrinkle_percentage = np.sum(left_under_eye>0)*100/(left_under_eye.shape[0]*left_under_eye.shape[1])
 
         #right under eye feature
-        right_under_eye = edge_img[face_features.part(47).y+5:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
+        right_under_eye = edge_img[face_features.part(47).y:face_features.part(29).y, face_features.part(22).x:face_features.part(25).x]
         right_under_eye_wrinkle_percentage = np.sum(right_under_eye>0)*100/(right_under_eye.shape[0]*right_under_eye.shape[1])
 
         #left cheek 

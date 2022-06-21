@@ -16,11 +16,10 @@ predictor = dlib.shape_predictor("shape_predictor_81_face_landmarks.dat")
 
 def initModel():
     data_path = "data.csv"
-    ds = pd.read_csv(data_path,usecols = ["geomatric", "forehead", "left-under-eye", "right-under-eye", "left-cheek",
-     "right-cheek", "left-eye-edge", "right-eye-edge", "class"])
+    ds = pd.read_csv(data_path,usecols = ["geomatric", "forehead", "left-under-eye", "right-under-eye", "left-cheek", "right-cheek", "left-eye-edge", "right-eye-edge", "class"])
     X = ds.iloc[:,:8]
     y = ds.iloc[:,-1]
-    knnmodel=KNeighborsClassifier(n_neighbors=10, metric="euclidean")
+    knnmodel=KNeighborsClassifier(n_neighbors=20)
     knnmodel.fit(X.values,y)
     return knnmodel
 
@@ -35,6 +34,8 @@ def feature_extraction(file):
     
     #get face landmarks
     face_features = predictor(image=convert_img, box=faces[0])
+
+    convert_img = cv2.GaussianBlur(convert_img,(3,3),0)
 
     #canny edge detection
     edge_img = cv2.Canny(convert_img, 45, 60)
@@ -97,13 +98,13 @@ def feature_extraction(file):
         "features": [geomatric, forehead_wrinkle_percentage, left_under_eye_wrinkle_percentage, right_under_eye_wrinkle_percentage, left_cheek_wrinkle_percentage, right_cheek_wrinkle_percentage, left_eye_edge_wrinkle_percentage, right_eye_edge_wrinkle_percentage]
     }
 
-# model = initModel()
+model = initModel()
 
-# # result=feature_extraction('test\\20-45\\05117.png')
-# # cv2.imshow('img', result["edge_img"])
-# # cv2.waitKey(delay=0)
+# result=feature_extraction('test\\under-20\\08342.png')
+# cv2.imshow('img', result["edge_img"])
+# cv2.waitKey(delay=0)
 
-# # print(model.predict([result["features"]]))
+# print(model.predict([result["features"]]))
 
 
 # final=0
@@ -128,17 +129,17 @@ def feature_extraction(file):
 #         final+=1
 
 # print(str(final) + " " + str(allItem))
-# final=0
-# allItem=0
+final=0
+allItem=0
 
-# for filename in os.listdir('test\\20-45'):
-#     rs= feature_extraction(os.path.join('test\\20-45',filename))
-#     print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
-#     allItem +=1
-#     if model.predict([rs["features"]])=='20-45':
-#         final+=1
+for filename in os.listdir('test\\20-45'):
+    rs= feature_extraction(os.path.join('test\\20-45',filename))
+    print(os.path.join('test\\20-45',filename) +":"+ model.predict([rs["features"]]))
+    allItem +=1
+    if model.predict([rs["features"]])=='20-45':
+        final+=1
 
-# print(str(final) + " " + str(allItem))
+print(str(final) + " " + str(allItem))
 
 
 
